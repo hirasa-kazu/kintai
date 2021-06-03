@@ -4,10 +4,4 @@ create table user(
 );
 
 
-create table user(
-	user_id varchar(50),
-	password char(60)
-);
-
-
 
