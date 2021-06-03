@@ -11,5 +11,3 @@ create table user(
 
 
 
-insert into user values('hirasa', 'kazu1240');
-insert into user values('root', 'kazu1240');
