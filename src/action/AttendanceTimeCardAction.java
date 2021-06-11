@@ -40,7 +40,7 @@ public class AttendanceTimeCardAction extends Action{
 
 		if (Flag) {
 			session.setAttribute("attendance", attendance);
-			response.sendRedirect("attendance_completion.jsp");
+			response.sendRedirect("attedance_completion.jsp");
 		} else {
 			response.sendRedirect("attendance_timecard_error.jsp");
 		}

@@ -83,4 +83,26 @@ public class WorkTime implements java.io.Serializable{
 	public void setWorkingHours(Duration workingHours) {
 		this.workingHours = workingHours;
 	}
+
+
+	/*
+	  休憩開始時間と休憩終了時間から休憩時間を自動計算する。
+	 */
+	public void calcBreakTime() {
+		Duration duration = Duration.between(breakStartTime, breakFinishTime);
+		setBreakTime(duration);
+	}
+
+	/*
+	  出勤時間と退勤時間から勤務時間を自動計算する。
+	  休憩時間があるときは勤務時間から休憩時間を引く。
+	 */
+	public void calcWorkingHours() {
+		Duration duration = Duration.between(startTime, finishTime);
+		setWorkingHours(duration);
+		if(breakTime != null) {
+			duration = workingHours.minus(breakTime);
+			setWorkingHours(duration);
+		}
+	}
 }

@@ -18,6 +18,9 @@ public class AttendanceLogoutChkAction extends Action{
 		HttpSession session = request.getSession();
 
 		session.removeAttribute("employeeCode");
-		return "attendace_logout.jsp";
+
+		response.sendRedirect("attendance_logout.jsp");
+
+		return "attendance_logout.jsp";
 	}
 }

@@ -30,32 +30,37 @@ public class UserDAO extends DAO{
 		con = getConnection();
 		boolean loginUserChkFlag = false;
 
-
+/*  最初に管理者を登録する際に使用
 		st = con.prepareStatement("select * from user where user_id = ? and password = ?");
 
 		st.setString(1, userId);
 		st.setString(2, password);
 		ResultSet rs = st.executeQuery();
 
-		//String sql = "select * from user where user_id = ? and password = ?"
-
-		//String hashed = rs.getString("password");
-
-	/*		if(rs.next()) {
-				if(userId.equals(rs.getString(1))) {
-					if(BCrypt.checkpw(password, rs.getString(2))) {
-						loginUserChkFlag = true;
-					}
-				}
-			}*/
-
-		if(rs.next()) {
+				if(rs.next()) {
 			if(userId.equals(rs.getString(1))) {
 				if(password.equals(rs.getString(2))) {
 					loginUserChkFlag = true;
 				}
 			}
 		}
+*/
+
+		//ハッシュ化したパスワードでログイン
+		String sql = "select * from user where user_id = '" + userId + "';";
+		st = con.prepareStatement(sql);
+		ResultSet rs = st.executeQuery();
+
+
+			if(rs.next()) {
+				if(userId.equals(rs.getString(1))) {
+					if(BCrypt.checkpw(password, rs.getString(2))) {
+						loginUserChkFlag = true;
+					}
+				}
+			}
+
+
 
 		st.close();
 		con.close();

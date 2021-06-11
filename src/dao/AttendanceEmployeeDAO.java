@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -46,29 +47,27 @@ public class AttendanceEmployeeDAO extends DAO{
 	}
 
 	//タイムカード出勤時間をテーブルに記録する
-	public boolean setStartTime(String employeeCode)throws Exception{
-		con = getConnection();
-
+	public boolean setStartTime(String employeeCode) throws SQLException {
 		con.setAutoCommit(false);
 		LocalDateTime now = LocalDateTime.now();
+		//既にその日のデータが追加されていたらfalseを返す
+		String sql = "SELECT * from work_time WHERE employee_code = '" + employeeCode
+				+ "' and work_date = '" + now.format(dateFormat) + "';";
 
-		st = con.prepareStatement("select * from work_time where employee_code = '" + employeeCode + "' and work_date = '" + now.format(dateFormat) +"':");
-
+		st = con.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
-
 		if(rs.next()) {
 			return false;
 		} else {
-			st = con.prepareStatement("insert into work_time(employee_code, work_date, start_time) "
-					+ "values('" + employeeCode + "','" + now.format(dateFormat) + "','" + now.format(timeFormat) +"';");
-
+			sql = "INSERT INTO work_time (employee_code, work_date, start_time) VALUES ('"
+			+ employeeCode + "', '" + now.format(dateFormat) + "', '"
+			+ now.format(timeFormat) + "' );";
+			st = con.prepareStatement(sql);
 			st.executeUpdate();
-
 			con.commit();
 
 			st.close();
 			con.close();
-
 			return true;
 		}
 	}

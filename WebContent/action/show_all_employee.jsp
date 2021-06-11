@@ -64,7 +64,7 @@
 					<%
 						}
 							} else {
-								response.sendRedirect("DisplayEmployeeList.action");
+								response.sendRedirect("DisplayEmployeeList");
 							}
 					%>
 				</table>

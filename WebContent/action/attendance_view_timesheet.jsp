@@ -50,6 +50,7 @@
 		<tr class="top_table"><th>日にち</th><th>曜日</th><th>出勤</th><th>退勤</th><th>休憩入り</th><th>休憩戻り</th>
 		<th>休憩時間</th><th>実働時間</th></tr>
 
+	<!-- 日にち -->
 		<%
 			thisMonthCalendar.add(Calendar.MONTH, -1);
 			int dayOfMonth = thisMonthCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -59,50 +60,48 @@
 			for(int i = 1; i <= dayOfMonth; i++) {
 				Boolean chkDateFlag = false;
 		%>
+				<tr class="main_table"><td><%= i + "日" %></td>
 
-			<!--テーブルの日にち部分  -->
-				<!-- <tr class="main_table"><td><%= thisMonthCalendar.get(Calendar.MONTH) + "月" + i + "日" %></td> -->
-				<tr class="main_table"><td><%=  i + "日" %></td>
-
-		<!-- 曜日 -->
+	<!-- 曜日 -->
 		<%
-		thisMonthCalendar.set(Calendar.DATE, 1);
-		int beforeBlank = thisMonthCalendar.get(Calendar.DAY_OF_WEEK);
-		String s ;
+		String s = null;
 
-		for(int d = 1; 1 <= 5 ; d++){
-			for(int w = beforeBlank; w <= 7; w++){
+		thisMonthCalendar.set(Calendar.DATE,1);
+		int week = thisMonthCalendar.getActualMaximum(Calendar.DAY_OF_WEEK);
+
+
+		for(int a = 1; a <= 5; a++){
+			for(int w = week; w <= 7; w++){
 				switch(w){
-					case 1: s = "日";
-						break;
-					case 2: s = "月";
-						break;
-					case 3: s = "火";
-						break;
-					case 4: s = "水";
-						break;
-					case 5: s = "木";
-						break;
-					case 6: s = "金";
-						break;
-					case 7: s = "土";
-						break;
+					case 1:
+				        s = "日曜日";
+				        break;
+				    case 2:
+				        s = "月曜日";
+				        break;
+				    case 3:
+				        s = "火曜日";
+				        break;
+				    case 4:
+				        s = "水曜日";
+				        break;
+				    case 5:
+				        s = "木曜日";
+				        break;
+				    case 6:
+				        s = "金曜日";
+				        break;
+				    case 7:
+				        s = "土曜日";
+				        break;
 				}
 			}
 		}
+
+
 		%>
 
-		<td><%= s %></td>
-
-
-
-		<!-- String[] week = {"日", "月", "火", "水", "木", "金", "土"};
-
-			thisMonthCalendar.add(Calendar.MONTH, -1);
-			int dayOfMonth = thisMonthCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-			thisMonthCalendar.add(Calendar.MONTH, 1);
-		 -->
-
+				<td><%= s %></td>
 
 			<%
 				for(WorkTime workTime: workTimeThisMonthList) {

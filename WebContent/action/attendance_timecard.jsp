@@ -23,7 +23,7 @@
 <meta charset="UTF-8">
 <title>タイムカード</title>
 <link rel="stylesheet" href="../common/css/style.css">
-<script type="text/javascript" src="common/JS/func.js"></script>
+<script type="text/javascript" src="../common/JS/func.js"></script>
 
 </head>
 <body>
@@ -48,7 +48,7 @@
 	<%
 		if (startWork == null) {
 	%>
-	<form action="AttendanceTimeCard" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="出勤処理"> <input
 			type="submit" name="submit" value="出勤" id="disableStartWorkButton"
 			class="attendance_timecard">
@@ -56,7 +56,7 @@
 	<%
 		} else {
 	%>
-	<form action="AttendanceTimeCard.action" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="出勤処理"> <input
 			type="submit" name="submit" value="出勤" id="disableStartWorkButton"
 			disabled="disabled" class="attendance_timecard2">
@@ -69,7 +69,7 @@
 					startWork != null && startBreak != null && finishBreak == null) {
 	%>
 
-	<form action="AttendanceTimeCard.action" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="退勤処理"> <input
 			type="submit" name="submit" value="退勤" id="disableFinishWorkButton"
 			disabled="disabled" class="attendance_timecard2">
@@ -79,7 +79,7 @@
 		} else {
 	%>
 
-	<form action="AttendanceTimeCard.action" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="退勤処理"> <input
 			type="submit" name="submit" value="退勤" id="disableFinishWorkButton"
 			class="attendance_timecard">
@@ -91,7 +91,7 @@
 			if (startBreak == null && finishWork == null && startWork != null) {
 	%>
 
-	<form action="AttendanceTimeCard" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="休憩開始処理"> <input
 			type="submit" name="submit" value="休憩する" id="disableStartBreakButton"
 			class="attendance_timecard">
@@ -101,7 +101,7 @@
 		} else {
 	%>
 
-	<form action="AttendanceTimeCard" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="休憩開始処理"> <input
 			type="submit" name="submit" value="休憩する" id="disableStartBreakButton"
 			disabled="disabled" class="attendance_timecard2">
@@ -113,7 +113,7 @@
 			if (finishBreak == null && finishWork == null && startBreak != null) {
 	%>
 
-	<form action="AttendanceTimeCard" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="休憩終了処理"> <input
 			type="submit" name="submit" value="休憩終了"
 			id="disableFinishBreakButton" class="attendance_timecard">
@@ -123,7 +123,7 @@
 		} else {
 	%>
 
-	<form action="AttendanceTimeCard" method="POST" class="attendance_form">
+	<form action="AttendanceTimeCard.action" method="post" class="attendance_form">
 		<input type="hidden" name="attendance" value="休憩終了処理"> <input
 			type="submit" name="submit" value="休憩終了"
 			id="disableFinishBreakButton" disabled="disabled"

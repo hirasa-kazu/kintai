@@ -3,7 +3,6 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,11 +34,11 @@ public class ViewListDAO extends DAO{
 	}
 
 
-	/**
-	 * @return List<ViewListDisplay> - 従業員モデルクラスのリスト。
-	 * @throws SQLException。データベース処理に問題があった場合。
-	 * 従業員情報一覧全件を取得して、List<ViewListDisplay>型で返します。
-	 */
+	/*
+	 @return List<ViewListDisplay> - 従業員モデルクラスのリスト。
+	 @throws SQLException。データベース処理に問題があった場合。
+	 従業員情報一覧全件を取得して、List<ViewListDisplay>型で返します。*/
+
 	public List<ViewListDisplay> showAllList() throws Exception {
 		con = getConnection();
 
